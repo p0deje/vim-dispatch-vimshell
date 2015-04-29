@@ -1,0 +1,27 @@
+*dispatch-vimshell.txt*  Vimshell strategy for dispatch.vim
+
+Author:  Alex Rodionov <https://github.com/p0deje>
+Repo:    https://github.com/p0deje/vim-dispatch-vimshell
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *dispatch-vimshell*
+
+Adds |vimshell.vim| strategy for |dispatch.vim| providing with a bunch of
+features:
+
+1. ANSI color support.
+2. Allows using interactive commands (e.g. irb).
+3. Allows sending SIGINT with <C-c>.
+4. Shows command output while it's running.
+5. A lot more that |vimshell.vim| allows to do.
+
+STRATEGY                                      *dispatch-vimshell-strategy*
+
+Vimshell ~
+
+Can be used if you have |vimshell.vim| installed.  Foreground spawns new
+unfocused vimshell buffer which shows you command output (almost) in real
+time.  It is also possible to start interactive commands (e.g. irb) but
+prefer using |:Start| for this.  Background builds are not supported.
+
+ vim:tw=78:et:ft=help:norl:
