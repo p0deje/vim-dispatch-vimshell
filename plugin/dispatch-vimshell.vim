@@ -11,6 +11,6 @@ augroup dispatch-vimshell
   autocmd!
   autocmd VimEnter *
         \ if index(get(g:, 'dispatch_handlers', ['vimshell']), 'vimshell') < 0 |
-        \   call insert(g:dispatch_handlers, 'vimshell') |
+        \   call insert(g:dispatch_handlers, 'vimshell', index(g:dispatch_handlers, 'screen')+1) |
         \ endif
 augroup END
