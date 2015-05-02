@@ -85,6 +85,6 @@ function! dispatch#vimshell#postexit(...) abort
 
   call system(&shell.' '.&shellcmdflag.' '.
         \ shellescape("perl -pi.bak -e 's/\x1b.*?[mGKH]//g' ".s:tempfile))
-  call dispatch#copen(0)
-  execute 'wincmd p'
+
+  call dispatch#complete(s:tempfile)
 endfunction
