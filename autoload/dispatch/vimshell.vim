@@ -71,12 +71,18 @@ function! dispatch#vimshell#preparse(...) abort
     let s:updatetime = &updatetime
     let &updatetime = 100
     let command .= ' '.&shellpipe.' '.s:tempfile
+    " TODO: $PIPESTATUS is supported only by bash; handle other shells
+    let command .= '; echo $PIPESTATUS > '.s:tempfile.'.complete'
   endif
 
-  return 'clear; '.
-        \ 'echo '.s:pid.' > '.s:tempfile.'.pid; '.
-        \ &shell.' '.&shellcmdflag.' '.vimproc#shellescape(command).
-        \ '; exit'
+  let commands = [
+        \ 'clear',
+        \ 'echo '.s:pid.' > '.s:tempfile.'.pid',
+        \ &shell.' '.&shellcmdflag.' '.vimproc#shellescape(command),
+        \ 'exit'
+        \ ]
+
+  return join(commands, '; ')
 endfunction
 
 function! dispatch#vimshell#postexit(...) abort
